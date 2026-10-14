@@ -1,0 +1,7 @@
+*.db
+*.db-wal
+*.db-shm
+*.csv
+*.log
+__pycache__/
+localllm/

@@ -1,0 +1,21 @@
+{
+ "type": "object",
+ "properties": {
+  "category": {
+   "type": "string",
+   "enum": [
+    "service",
+    "commerce",
+    "business",
+    "blog",
+    "parking",
+    "spam",
+    "unknown"
+   ]
+  }
+ },
+ "required": [
+  "category"
+ ],
+ "additionalProperties": false
+}

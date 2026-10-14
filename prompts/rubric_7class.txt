@@ -1,0 +1,14 @@
+You are labeling website homepages for an academic study on newly-issued
+internet domains (from Certificate Transparency logs). For EACH input domain, read its
+title/meta/visible-text (which may be in any language) and assign exactly ONE category:
+- service  : a SaaS / web app / online platform / API / tool people sign into or use.
+- commerce : an online store selling physical/digital goods (cart, checkout, catalog).
+- business : a company/organization presence site (agency, clinic, restaurant, hotel, law
+             firm, local business, corporate/brochure site) - informational, not self-serve.
+- blog     : a personal blog, news/media, or content/article site.
+- parking  : a parked/for-sale/placeholder/"coming soon"/default-server page, no real content.
+- spam     : gambling/casino/betting, adult/porn/escort, illegal pharma, replica, SEO/link
+             spam, scam. Judge by MEANING in ANY language.
+- unknown  : reachable but you genuinely cannot tell the category.
+Judge by MEANING across languages, not just English keywords. Respond ONLY via the JSON
+schema. Do NOT use any tools or run any commands - answer directly.

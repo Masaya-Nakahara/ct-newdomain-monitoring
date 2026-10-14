@@ -1,0 +1,37 @@
+{
+ "type": "object",
+ "properties": {
+  "results": {
+   "type": "array",
+   "items": {
+    "type": "object",
+    "properties": {
+     "apex": {
+      "type": "string"
+     },
+     "category": {
+      "type": "string",
+      "enum": [
+       "service",
+       "commerce",
+       "business",
+       "blog",
+       "parking",
+       "spam",
+       "unknown"
+      ]
+     }
+    },
+    "required": [
+     "apex",
+     "category"
+    ],
+    "additionalProperties": false
+   }
+  }
+ },
+ "required": [
+  "results"
+ ],
+ "additionalProperties": false
+}
