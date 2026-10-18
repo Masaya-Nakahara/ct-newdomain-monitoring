@@ -2,8 +2,8 @@
 
 Code and prompts for the paper:
 
-中原 匡哉：証明書透明性ログを用いた新規ドメイン監視のための実態計測 ―登録情報による新規性の検証と生成AIによる濫用の分離―
-(Masaya Nakahara: Measuring Newly Observed Domains in Certificate Transparency Logs for Domain Monitoring: Registry-Based Newness Validation and Generative-AI-Based Abuse Separation)
+中原 匡哉：証明書透明性ログと生成AIを用いた新規ドメインの監視に関する研究
+(Masaya Nakahara: Study on Monitoring New Domains Using Certificate Transparency Logs and Generative AI)
 
 ## Contents / 構成
 | Folder | 内容 |
