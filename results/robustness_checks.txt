@@ -10,13 +10,13 @@ abuseに占める新規 10/21=47.6%  Wilson 95%CI 28〜68%  標本に占める�
 MH OR=4.69  CMH χ²=11.81（連続性補正）  p=5.9e-04
 
 ==== 3. 分類器（正解付き） ====
-  gpt-5.3-codex-spark: 再現率 McNemar p=0.0156 (heurのみ0/LLMのみ7)   誤検出の McNemar p=0.180 (heurのみ2/LLMのみ7)
-  g55a: 再現率 McNemar p=0.0078 (heurのみ0/LLMのみ8)   誤検出の McNemar p=0.180 (heurのみ2/LLMのみ7)
-  g55b: 再現率 McNemar p=0.0078 (heurのみ0/LLMのみ8)   誤検出の McNemar p=0.109 (heurのみ2/LLMのみ8)
-  g55c: 再現率 McNemar p=0.0078 (heurのみ0/LLMのみ8)   誤検出の McNemar p=0.180 (heurのみ2/LLMのみ7)
-  qwen_a: 再現率 McNemar p=0.2891 (heurのみ2/LLMのみ6)   誤検出の McNemar p=0.109 (heurのみ2/LLMのみ8)
-  Holm 補正後: gpt-5.3-codex-spark=0.039  g55a=0.039  g55b=0.039  g55c=0.039  qwen_a=0.289
-  正解abuse 全55件（未到達含む）での再現率: ヒューリスティック 0.67  spark 0.78（到達48件／未到達7件）
+  gpt-5.3-codex-spark: 再現率 McNemar p=0.0005 (heurのみ0/LLMのみ12)   誤検出の McNemar p=1.000 (heurのみ2/LLMのみ2)
+  g55a: 再現率 McNemar p=0.0002 (heurのみ0/LLMのみ13)   誤検出の McNemar p=1.000 (heurのみ2/LLMのみ2)
+  g55b: 再現率 McNemar p=0.0002 (heurのみ0/LLMのみ13)   誤検出の McNemar p=1.000 (heurのみ2/LLMのみ3)
+  g55c: 再現率 McNemar p=0.0002 (heurのみ0/LLMのみ13)   誤検出の McNemar p=1.000 (heurのみ2/LLMのみ2)
+  qwen_a: 再現率 McNemar p=0.0225 (heurのみ2/LLMのみ11)   誤検出の McNemar p=1.000 (heurのみ2/LLMのみ3)
+  Holm 補正後: gpt-5.3-codex-spark=0.001  g55a=0.001  g55b=0.001  g55c=0.001  qwen_a=0.022
+  正解abuse 全59件（未到達含む）での再現率: ヒューリスティック 0.63  spark 0.81（到達52件／未到達7件）
 
 ==== 4. 初回証明書日による新規判定の妥当性 ====
 n=162  一致率 96.9%  κ=0.840  新規側の感度 15/20=0.75  特異度 142/142=1.000  （RDAPで新規 20件，既存 142件）
