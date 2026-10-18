@@ -12,7 +12,7 @@ Code and prompts for the paper:
 | `newness/` | Registration dates via RDAP (IANA bootstrap) and first-certificate dates via crt.sh |
 | `leadtime/` | Random sample of Show HN posts (24 months, Algolia HN Search API), first certificates, RDAP, and first Wayback Machine captures (CDX API) |
 | `classification/` | Fetching landing pages, keyword-based heuristic classifier, LLM classifiers (Codex CLI / llama.cpp) |
-| `analysis/` | Robustness checks (day-level bootstrap, Mantel–Haenszel, Holm) and the blind manual verification of the random sample |
+| `analysis/` | Robustness checks (day-level bootstrap, Mantel–Haenszel, Holm), the blind manual verification of the random sample, classifier metrics weighted by the sampling strata, and additional checks (sensitivity of the certificate-history newness, worst-case allocation of missed abuse, day weighting) |
 | `prompts/` | Full prompt (rubric), input format, output JSON schemas, and model settings |
 | `results/` | Aggregated results reported in the paper (no domain-level data) |
 

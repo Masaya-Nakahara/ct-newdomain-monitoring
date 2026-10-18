@@ -105,6 +105,7 @@ for t in ("g55a", "g55b", "g55c", "qwen_a"):
     f = os.path.join(ROOT, f"llm_gold_{t}.csv")
     if os.path.exists(f): preds[t] = {r["apex"]: r[f"llm_{t}"] for r in csv.DictReader(open(f, encoding="utf-8"))}
 heur = {a: base[a]["heuristic"] for a in base}
+CL3 = ("live", "non-content", "abuse")   # 判断不能は評価から除く
 ab_r = [a for a in base if a in reach and base[a]["gold"] == "abuse"]
 pv = {}
 for k, pr in preds.items():
@@ -112,15 +113,18 @@ for k, pr in preds.items():
     c_ = sum(1 for a in ab_r if heur[a] != "abuse" and pr.get(a) == "abuse")
     pv[k] = mcnemar(b_, c_)
     # 適合率の差（予測abuseのうち誤り）の McNemar：非abuse正解での誤検出の対応比較
-    na = [a for a in base if a in reach and base[a]["gold"] != "abuse"]
+    na = [a for a in base if a in reach and base[a]["gold"] in CL3 and base[a]["gold"] != "abuse"]
     fb = sum(1 for a in na if heur[a] == "abuse" and pr.get(a) != "abuse")
     fc = sum(1 for a in na if heur[a] != "abuse" and pr.get(a) == "abuse")
     P(f"  {k}: 再現率 McNemar p={pv[k]:.4f} (heurのみ{b_}/LLMのみ{c_})   誤検出の McNemar p={mcnemar(fb, fc):.3f} (heurのみ{fb}/LLMのみ{fc})")
-order = sorted(pv, key=pv.get); m = len(order); adj = {}; run = 0
+# Holm 補正：本文と同じく「3つの分類器それぞれとヒューリスティック分類器の再現率の比較」の3つ（gpt-5.5 は3回のうち最大の p）
+mod = {"gpt-5.3-codex-spark": pv["gpt-5.3-codex-spark"], "gpt-5.5": max(pv[k] for k in ("g55a", "g55b", "g55c") if k in pv),
+       "Qwen2.5-7B-Instruct": pv.get("qwen_a", 1.0)}
+order = sorted(mod, key=mod.get); m = len(order); adj = {}; run = 0
 for i, k in enumerate(order):
-    run = max(run, min(1, (m - i) * pv[k])); adj[k] = run
-P("  Holm 補正後: " + "  ".join(f"{k}={adj[k]:.3f}" for k in preds))
-ab_all = [a for a in base if base[a]["gold"] == "abuse"]
+    run = max(run, min(1, (m - i) * mod[k])); adj[k] = run
+P("  Holm 補正後（3つの分類器×再現率）: " + "  ".join(f"{k}={adj[k]:.4f}" for k in mod))
+ab_all = [a for a in base if base[a]["gold"] == "abuse"]   # 未到達を含む
 P(f"  正解abuse 全{len(ab_all)}件（未到達含む）での再現率: ヒューリスティック {sum(heur[a]=='abuse' for a in ab_all)/len(ab_all):.2f}"
   f"  spark {sum(preds['gpt-5.3-codex-spark'][a]=='abuse' for a in ab_all)/len(ab_all):.2f}"
   f"（到達{len(ab_r)}件／未到達{len(ab_all)-len(ab_r)}件）")
